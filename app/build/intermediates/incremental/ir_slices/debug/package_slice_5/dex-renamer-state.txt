@@ -1,4 +1,4 @@
-#Tue Mar 05 09:24:59 EET 2019
+#Wed Mar 06 11:05:51 EET 2019
 base.0=E\:\\StudioProjects\\FragmentExample1\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\5
 path.0=classes.dex
 renamed.0=classes.dex
