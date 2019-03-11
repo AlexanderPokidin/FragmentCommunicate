@@ -1,9 +1,7 @@
 package com.example.android.fragmentexample2;
 
-
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +11,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SimpleFragment extends android.support.v4.app.Fragment {
     public static final int YES = 0;
     public static final int NO = 1;
