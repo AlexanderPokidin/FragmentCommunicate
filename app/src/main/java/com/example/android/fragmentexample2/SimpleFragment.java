@@ -1,5 +1,6 @@
 package com.example.android.fragmentexample2;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 public class SimpleFragment extends android.support.v4.app.Fragment {
     public static final int YES = 0;
     public static final int NO = 1;
+    private static final int NONE = 2;
+
+    public int mRadioButtonChoice = NONE;
+    OnFragmentInteractionListener mListener;
 
 
     public SimpleFragment() {
@@ -22,6 +27,17 @@ public class SimpleFragment extends android.support.v4.app.Fragment {
 
     public static SimpleFragment newInstance() {
         return new SimpleFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + getResources().getString(R.string.exception_message));
+        }
     }
 
     @Override
@@ -41,11 +57,15 @@ public class SimpleFragment extends android.support.v4.app.Fragment {
                 switch (index) {
                     case YES:
                         textView.setText(R.string.yes_message);
+                        mListener.onRadioButtonChoice(YES);
                         break;
                     case NO:
                         textView.setText(R.string.no_message);
+                        mListener.onRadioButtonChoice(NO);
                         break;
                     default:
+                        mRadioButtonChoice = NONE;
+                        mListener.onRadioButtonChoice(NONE);
                         break;
                 }
             }
@@ -61,5 +81,9 @@ public class SimpleFragment extends android.support.v4.app.Fragment {
         });
 
         return rootView;
+    }
+
+    interface OnFragmentInteractionListener {
+        void onRadioButtonChoice(int choice);
     }
 }

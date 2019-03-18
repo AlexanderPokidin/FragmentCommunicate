@@ -6,13 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SimpleFragment.OnFragmentInteractionListener {
 
     static final String STATE_FRAGMENT = "state_of_fragment";
 
     private Button mButton;
     private boolean isFragmentDisplayed = false;
+    private int mRadioButtonChoice = 2; // The default (no choice).
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,5 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
         mButton.setText(R.string.open);
         isFragmentDisplayed = false;
+    }
+
+    @Override
+    public void onRadioButtonChoice(int choice) {
+        // Keep the radio button choice to pass it back to the fragment.
+        mRadioButtonChoice = choice;
+        Toast.makeText(this, "Choice is " + Integer.toString(choice), Toast.LENGTH_SHORT).show();
     }
 }
